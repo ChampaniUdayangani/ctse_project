@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "137600674887",
+    "firebase_url": "https://ctse-final-project.firebaseio.com",
+    "project_id": "ctse-final-project",
+    "storage_bucket": "ctse-final-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137600674887:android:94967c69c5708d3a4cd562",
+        "android_client_info": {
+          "package_name": "com.ctse.ctse_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137600674887-2a1m85t88j9fm0mk1f23fp2afg4jkv0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU-ruujbH0tGl2hNhNHLzN8f_ngUJESD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137600674887-2a1m85t88j9fm0mk1f23fp2afg4jkv0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
