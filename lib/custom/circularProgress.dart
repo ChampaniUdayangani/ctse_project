@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+
+// Code is referred from https://mightytechno.com/flutter-percent-indicator/ and adopted to match requirement of this project
 class CircularProgress extends CustomPainter{
 
+  //to store the progress
   double currentProgress;
 
   CircularProgress(this.currentProgress);
@@ -10,14 +13,15 @@ class CircularProgress extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
 
-    //this is base circle
+    //draw base circle
     Paint outerCircle = Paint()
-      ..strokeWidth = 5
+      ..strokeWidth = 6
       ..color = Colors.grey
       ..style = PaintingStyle.stroke;
 
+    //paint the arc
     Paint completeArc = Paint()
-      ..strokeWidth = 5
+      ..strokeWidth = 6
       ..color = Colors.indigo
       ..style = PaintingStyle.stroke
       ..strokeCap  = StrokeCap.round;
@@ -25,7 +29,8 @@ class CircularProgress extends CustomPainter{
     Offset center = Offset(size.width/2, size.height/2);
     double radius = min(size.width/2,size.height/2) - 10;
 
-    canvas.drawCircle(center, radius, outerCircle); // this draws main outer circle
+    //draw main outer circle
+    canvas.drawCircle(center, radius, outerCircle);
 
     double angle = 2 * pi * (currentProgress/100);
 

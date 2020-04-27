@@ -10,6 +10,8 @@ class BookmarkedHotelPage extends StatefulWidget{
 
 }
 
+
+//Referred https://flutter.dev/docs
 class BookmarkedHotelState extends State<BookmarkedHotelPage> {
   
   //generate bookmarked hotel list
@@ -46,33 +48,42 @@ class BookmarkedHotelState extends State<BookmarkedHotelPage> {
                   ),
                   Container(
                     child: Expanded(
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              hotel.name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                hotel.name,
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            Text(
-                              hotel.location,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 12.0,
+                              Text(
+                                hotel.location,
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                ),
                               ),
-                            ),
-                            Text(
-                              'LKR '+ hotel.price.toString(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                          ],
-                        ),
+                              Row(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.attach_money,
+                                    color: Colors.brown,
+                                  ),
+                                  Text(
+                                    'LKR '+ hotel.price.toString(),
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        )
                     )
                   )
                 ],
@@ -80,7 +91,11 @@ class BookmarkedHotelState extends State<BookmarkedHotelPage> {
             ),
           ),
           IconButton(
-              icon: Icon(Icons.delete),
+              icon: Icon(
+                Icons.delete,
+                size: 30.0,
+                color: Colors.black54,
+              ),
               onPressed: (){
                 deleteBookmarkedHotel(hotel.name);
               }
@@ -100,6 +115,9 @@ class BookmarkedHotelState extends State<BookmarkedHotelPage> {
 
     return MaterialApp(
       title: 'Hotel Booking App',
+      theme: ThemeData(
+          primaryColor: Colors.indigo
+      ),
       home: Scaffold(
           appBar: AppBar(
             title: Text('Bookmarked Hotels'),
@@ -107,7 +125,10 @@ class BookmarkedHotelState extends State<BookmarkedHotelPage> {
           body: StreamBuilder<QuerySnapshot>(
               stream: getBookmarkedHotels(),
               builder: (context, snapshot){
-                if(!snapshot.hasData) return const Text('Loading');
+                if(!snapshot.hasData) return
+                  Center(
+                    child: CircularProgressIndicator(),
+                  ) ;
                 return ListView(
                   children: <Widget>[
                     buildHotelList(context, snapshot.data.documents)
@@ -118,14 +139,6 @@ class BookmarkedHotelState extends State<BookmarkedHotelPage> {
       ),
     );
   }
-
-
-
-
-
-
-
-
 
 }
 

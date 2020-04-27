@@ -11,6 +11,7 @@ class HotelListPage extends StatefulWidget{
 
 }
 
+//Referred https://flutter.dev/docs
 class HotelListState extends State<HotelListPage> {
 
   //generate the hotel list
@@ -62,7 +63,7 @@ class HotelListState extends State<HotelListPage> {
                         hotel.name,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -71,12 +72,17 @@ class HotelListState extends State<HotelListPage> {
                         'LKR '+ hotel.price.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 12.0
+                          fontSize: 16.0
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text(hotel.desc),
+                        child: Text(
+                          hotel.desc,
+                          style: TextStyle(
+                              fontSize: 14.0
+                          ),
+                        ),
                       )
                     ],
                   ),
@@ -175,13 +181,13 @@ class HotelListState extends State<HotelListPage> {
           fit: BoxFit.fill,
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: 110.0, left: 150.0),
+          padding: EdgeInsets.only(bottom: 150.0, left: 200.0),
           child: Row(
             children: <Widget>[
               Text(
                 hotel.rating.toString() + '.0',
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -201,7 +207,7 @@ class HotelListState extends State<HotelListPage> {
               child: Text(
                 document['name'],
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -216,7 +222,8 @@ class HotelListState extends State<HotelListPage> {
               'LKR' + document['pricing'].toString(),
               style: TextStyle(
                 color: Colors.black,
-                fontStyle: FontStyle.italic
+                fontStyle: FontStyle.italic,
+                fontSize: 16.0
               ),
             )
         )
@@ -244,7 +251,7 @@ class HotelListState extends State<HotelListPage> {
                     child: Text(
                         'Popular Hotels',
                         style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 26.0,
                             color: Colors.blueGrey,
                             fontWeight: FontWeight.bold
                         )
@@ -258,7 +265,7 @@ class HotelListState extends State<HotelListPage> {
                         child: Text(
                             'Explore More',
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 26.0,
                                 color: Colors.blueGrey,
                                 fontWeight: FontWeight.bold
                             )
@@ -282,6 +289,9 @@ class HotelListState extends State<HotelListPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hotel Booking App',
+      theme: ThemeData(
+          primaryColor: Colors.indigo
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: Text('Hotels'),
@@ -290,8 +300,6 @@ class HotelListState extends State<HotelListPage> {
       ),
     );
   }
-
-
 
 }
 

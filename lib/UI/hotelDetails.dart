@@ -13,7 +13,7 @@ import 'package:ctse_project/custom/circularProgress.dart';
 import 'package:geocoder/geocoder.dart';
 
 
-
+//Referred https://flutter.dev/docs
 class HotelDetailedPage extends StatefulWidget{
   @override
   HotelState createState() => HotelState();
@@ -72,7 +72,7 @@ class HotelState extends State<HotelDetailedPage> {
                   Container(
                       child: ListTile(
                         trailing: Icon(alreadySaved ? Icons.bookmark : Icons.bookmark_border,
-                          color: alreadySaved ? Colors.green : null,
+                          color: alreadySaved ? Colors.red : null,
                           size: 34.0,
                         ),
                         onTap: (){
@@ -120,13 +120,18 @@ class HotelState extends State<HotelDetailedPage> {
             child: CustomPaint(
               foregroundPainter: CircularProgress(stat.value),
               child: Container(
-                width: 70,
-                height: 70,
+                width: 80,
+                height: 80,
                 child: Center(child: Text((stat.value/10).toStringAsFixed(1)),),
               ),
             ),
           ),
-          Text(stat.key)
+          Text(
+            stat.key,
+            style: TextStyle(
+                fontSize: 16.0,
+            ),
+          )
         ],
       ),
     );
@@ -152,7 +157,7 @@ class HotelState extends State<HotelDetailedPage> {
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
+                    fontSize: 26.0,
                   ),
                 ),
               )
@@ -181,7 +186,7 @@ class HotelState extends State<HotelDetailedPage> {
                 style: TextStyle(
                   color: Colors.blueGrey,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
+                  fontSize: 26.0,
                 ),
               ),
             )
@@ -191,6 +196,9 @@ class HotelState extends State<HotelDetailedPage> {
             child: Text(
               hotel.desc,
               softWrap: true,
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             ),
           )
         ],
@@ -210,7 +218,7 @@ class HotelState extends State<HotelDetailedPage> {
           icon = Icon(
             Icons.wifi,
             color: Colors.teal,
-            size: 34.0,
+            size: 40.0,
           );
         }
         break;
@@ -218,7 +226,7 @@ class HotelState extends State<HotelDetailedPage> {
           icon = Icon(
             Icons.pets,
             color: Colors.brown,
-            size: 34.0,
+            size: 40.0,
           );
         }
         break;
@@ -226,7 +234,7 @@ class HotelState extends State<HotelDetailedPage> {
           icon = Icon(
             Icons.fastfood,
             color: Colors.amber,
-            size: 34.0,
+            size: 40.0,
           );
         }
         break;
@@ -234,7 +242,7 @@ class HotelState extends State<HotelDetailedPage> {
           icon = Icon(
             Icons.local_parking,
             color: Colors.blueGrey,
-            size: 34.0,
+            size: 40.0,
           );
         }
         break;
@@ -242,7 +250,7 @@ class HotelState extends State<HotelDetailedPage> {
           icon = Icon(
             Icons.pool,
             color: Colors.lightBlue,
-            size: 34.0,
+            size: 40.0,
           );
         }
         break;
@@ -250,7 +258,7 @@ class HotelState extends State<HotelDetailedPage> {
           icon = Icon(
             Icons.spa,
             color: Colors.green,
-            size: 34.0,
+            size: 40.0,
           );
         }
         break;
@@ -258,7 +266,7 @@ class HotelState extends State<HotelDetailedPage> {
           icon = Icon(
             Icons.local_activity,
             color: Colors.red,
-            size: 34.0,
+            size: 40.0,
           );
         }
         break;
@@ -266,7 +274,7 @@ class HotelState extends State<HotelDetailedPage> {
           icon = Icon(
             Icons.card_giftcard,
             color: Colors.pink,
-            size: 34.0,
+            size: 40.0,
           );
         }
         break;
@@ -287,7 +295,7 @@ class HotelState extends State<HotelDetailedPage> {
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
+                    fontSize: 26.0,
                   ),
                 ),
               )
@@ -314,7 +322,7 @@ class HotelState extends State<HotelDetailedPage> {
             child: Text(
               label,
               style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w400,
                   color: color
               ),
@@ -359,17 +367,32 @@ class HotelState extends State<HotelDetailedPage> {
                icon: BitmapDescriptor.defaultMarker,
              ));
 
-            return Container(
-                height: 200,
-                child: GoogleMap(
-                markers: _markers,
-                mapType: MapType.normal,
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                 target: _hotelPosition,
-                 zoom: 12.0,
-               ),
-              )
+            return Column(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Location',
+                    style: TextStyle(
+                      color: Colors.blueGrey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26.0,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 200,
+                  child: GoogleMap(
+                    markers: _markers,
+                    mapType: MapType.normal,
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: _hotelPosition,
+                      zoom: 12.0,
+                    ),
+                  )
+                )
+              ],
             );
           }
           return CircularProgressIndicator();
@@ -385,7 +408,7 @@ class HotelState extends State<HotelDetailedPage> {
       child: Text(
         'LKR '+ document['pricing'].toString(),
         style: TextStyle(
-          fontSize: 18,
+          fontSize: 20.0,
           fontWeight: FontWeight.bold
         ),
       ),
@@ -399,7 +422,7 @@ class HotelState extends State<HotelDetailedPage> {
     int rating = document['rating'];
     final children = <Widget>[];
     for (var i = 0; i < rating; i++) {
-      children.add(new Icon(Icons.star, color: Colors.yellow, size: 20.0,));
+      children.add(new Icon(Icons.star, color: Colors.yellow, size: 24.0,));
     }
     return Align(
       alignment: Alignment.centerLeft,
@@ -412,12 +435,23 @@ class HotelState extends State<HotelDetailedPage> {
             alignment: Alignment.centerLeft,
             child: Row(
               children: <Widget>[
-                Text('Recommended By '),
+                Text(
+                  'Recommended By ',
+                  style: TextStyle(
+                    fontSize: 18.0
+                  ),
+                ),
                 Icon(
                   Icons.supervised_user_circle,
                   color: Colors.deepPurple,
+                  size: 28.0,
                 ),
-                Text(document['recommends'] + '+ people'),
+                Text(
+                  ' '+ document['recommends'] + '+ people',
+                  style: TextStyle(
+                      fontSize: 18.0
+                  ),
+                ),
               ],
             ),
           ),
@@ -427,11 +461,16 @@ class HotelState extends State<HotelDetailedPage> {
               children: <Widget>[
                 Icon(
                   Icons.phone,
-                  size: 16.0,
+                  size: 20.0,
                   color: Colors.blueGrey,
 
                 ),
-                Text(document['telephone']),
+                Text(
+                  document['telephone'],
+                  style: TextStyle(
+                      fontSize: 18.0
+                  ),
+                ),
               ],
             )
           )
@@ -456,6 +495,7 @@ class HotelState extends State<HotelDetailedPage> {
               buildPriceSection(context, hotel),
               buildStarRatings(context, hotel),
               descriptionSection(context, hotel),
+
               googleMapSection(context, hotel),
               facilitiesSection(context, hotel),
               statsSection(context, hotel),
@@ -471,6 +511,9 @@ class HotelState extends State<HotelDetailedPage> {
 
     return MaterialApp(
       title: 'Hotel Booking App',
+      theme: ThemeData(
+          primaryColor: Colors.indigo
+      ),
       home: Scaffold(
           appBar: AppBar(
             title: Text('Hotel Details'),

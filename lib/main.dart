@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget{
     // TODO: implement build
     return MaterialApp(
         theme: ThemeData(
-            primaryColor: Colors.yellowAccent
+            primaryColor: Colors.indigo
         ),
         home: HotelListPage()
     );

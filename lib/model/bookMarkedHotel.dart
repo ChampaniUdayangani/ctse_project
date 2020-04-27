@@ -27,5 +27,4 @@ class BookmarkedHotel{
         return {'name': name, 'price': price, 'location': location, 'bg_img': bgImg};
   }
 
-
 }
