@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Hotel{
+    //define all the necessary attributes for Hotel
     String name;
     String location;
     List<String> images;
@@ -12,11 +13,11 @@ class Hotel{
     Map<String, double> stats;
     DocumentReference reference;
 
-    Hotel({this.name});
 
+    //map data with database reference
     Hotel.fromMap(Map<String, dynamic> map, {this.reference}){
         name = map["name"];
-        price = map["price"];
+        price = map["pricing"];
         rating = map["rating"];
         bg_img = map["bg_img"];
         desc = map["description"];

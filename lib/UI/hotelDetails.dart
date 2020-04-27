@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:ctse_project/API/hotelAPI.dart';
 import 'package:ctse_project/API/bookmarkedHotelAPI.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctse_project/model/hotel.dart';
@@ -24,27 +23,34 @@ class HotelDetailedPage extends StatefulWidget{
 
 
 class HotelState extends State<HotelDetailedPage> {
+  //create bookmarked hotel set
   final _bookmarkedHotels = Set<String>();
 
+  //define controller for google map
   static Completer<GoogleMapController> _controller = Completer();
 
-
+  //_onMapCreated method for google map
   static void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
   
-
+  //generate slider to display hotel images
   Widget buildHotelImageSliderSection(BuildContext context, DocumentSnapshot document){
     Hotel hotel = Hotel.fromSnapshot(document);
 
+    //create new BookmarkedHotel
     BookmarkedHotel bookmarked = new BookmarkedHotel(
         name: document['name'],
         price: document['pricing'],
         location: document['location'],
         bgImg: document['bg_img'],
     );
+
+    /*
+    check whether the hotel is already saved
+    this is used to add and delete bookmarked hotels when user clicks on bookmark icon
+     */
     final alreadySaved = _bookmarkedHotels.contains(bookmarked.name);
-    print(alreadySaved);
 
     return Container(
         padding: EdgeInsets.all(0.0),
@@ -99,11 +105,11 @@ class HotelState extends State<HotelDetailedPage> {
           )
           ).toList(),
         )
-
     );
   }
 
 
+  //generate circular progress bar for each service using flutter animations
   Padding buildPercentageViewer(BuildContext context, stat) {
 
     return Padding(
@@ -126,12 +132,14 @@ class HotelState extends State<HotelDetailedPage> {
     );
   }
 
+  //generate hotel service ratings list
   Widget statsSection(BuildContext context, DocumentSnapshot document){
     final children = <Widget>[];
 
     for (var entry in document["stats"].entries) {
       children.add(buildPercentageViewer(context, entry));
     }
+
     return Container(
       child: Column(
         children: <Widget>[
@@ -150,17 +158,17 @@ class HotelState extends State<HotelDetailedPage> {
               )
           ),
           Row(
-//          mainAxisAlignment: MainAxisAlignment.start,
               children: children
           )
         ],
       )
-
     );
   }
 
 
+  //generate hotel description
   Widget descriptionSection(BuildContext context, DocumentSnapshot document){
+    Hotel hotel = Hotel.fromSnapshot(document);
      return Container(
       child: Column(
         children: <Widget>[
@@ -181,7 +189,7 @@ class HotelState extends State<HotelDetailedPage> {
           Padding(
             padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: Text(
-              document['description'],
+              hotel.desc,
               softWrap: true,
             ),
           )
@@ -191,6 +199,7 @@ class HotelState extends State<HotelDetailedPage> {
   }
 
 
+  //generate hotel facilities list using Flutter icons
   Widget facilitiesSection(BuildContext context, DocumentSnapshot document){
     var icon;
     final children = <Widget>[];
@@ -262,9 +271,7 @@ class HotelState extends State<HotelDetailedPage> {
         }
         break;
       }
-
       children.add(buildFacilityIcon(Colors.blue, icon, facilities[i]));
-
     }
 
     return Container(
@@ -295,6 +302,7 @@ class HotelState extends State<HotelDetailedPage> {
   }
 
 
+  //generate individual hotel facility icon
   Padding buildFacilityIcon(Color color, Icon icon, String label) {
     return Padding(
       padding: EdgeInsets.only(left: 15.0, right: 15.0),
@@ -319,6 +327,10 @@ class HotelState extends State<HotelDetailedPage> {
 
   }
 
+  /*
+  get the latitude and longitude of hotel address
+  this is used to display the marker on map
+   */
   Future<LatLng> _getLocation(String address) async{
 
     var location = await Geocoder.local.findAddressesFromQuery(address);
@@ -327,39 +339,46 @@ class HotelState extends State<HotelDetailedPage> {
 
   }
 
-
+   //display the map and include location marker on hotel address
    Widget googleMapSection(BuildContext context, DocumentSnapshot document) {
-      const LatLng _center = const LatLng(7.5328897, 79.841951);
-      final Set<Marker> _markers = {};
-      LatLng _hotelPosition;
-      _getLocation(document['location']).then((LatLng coordinates){
-        _hotelPosition = coordinates;
-      });
+     Set<Marker> _markers = {};
+     LatLng _hotelPosition;
+    return FutureBuilder(
+        future: _getLocation(document['location']),
+        builder: (BuildContext context, AsyncSnapshot<LatLng> snapshot){
+          if(snapshot.hasData){
+            _hotelPosition = snapshot.data;
+            _markers.add(Marker(
+               //set marker id as location address which uniquely identifies the marker.
+               markerId: MarkerId(document['location']),
+               position: _hotelPosition,
+               infoWindow: InfoWindow(
+                 title: document['location'],
+                 snippet: document['rating'].toString()+' star rating',
+               ),
+               icon: BitmapDescriptor.defaultMarker,
+             ));
 
-      _markers.add(Marker(
-      // This marker id can be anything that uniquely identifies each marker.
-        markerId: MarkerId(document['location']),
-        position: _hotelPosition,
-        infoWindow: InfoWindow(
-          title: document['location'],
-          snippet: document['rating'].toString()+' star rating',
-        ),
-        icon: BitmapDescriptor.defaultMarker,
-      ));
-    return Container(
-        height: 200,
-        child: GoogleMap(
-          markers: _markers,
-          mapType: MapType.normal,
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 12.0,
-          ),
-        )
+            return Container(
+                height: 200,
+                child: GoogleMap(
+                markers: _markers,
+                mapType: MapType.normal,
+                onMapCreated: _onMapCreated,
+                initialCameraPosition: CameraPosition(
+                 target: _hotelPosition,
+                 zoom: 12.0,
+               ),
+              )
+            );
+          }
+          return CircularProgressIndicator();
+        }
     );
+
   }
 
+  //display the hotel price
   Align buildPriceSection(BuildContext context, DocumentSnapshot document){
     return Align(
       alignment: Alignment.centerRight,
@@ -369,13 +388,13 @@ class HotelState extends State<HotelDetailedPage> {
           fontSize: 18,
           fontWeight: FontWeight.bold
         ),
-
-
       ),
     );
   }
 
 
+
+  //display the star ratings of the hotel
   Widget buildStarRatings(BuildContext context, DocumentSnapshot document){
     int rating = document['rating'];
     final children = <Widget>[];
@@ -401,7 +420,20 @@ class HotelState extends State<HotelDetailedPage> {
                 Text(document['recommends'] + '+ people'),
               ],
             ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Row(
+              children: <Widget>[
+                Icon(
+                  Icons.phone,
+                  size: 16.0,
+                  color: Colors.blueGrey,
 
+                ),
+                Text(document['telephone']),
+              ],
+            )
           )
         ]
         
@@ -409,6 +441,8 @@ class HotelState extends State<HotelDetailedPage> {
     );
   }
 
+
+  //generate main content of the UI
   Widget buildBody(BuildContext context){
     final DocumentSnapshot hotel = ModalRoute.of(context).settings.arguments;
 
@@ -428,23 +462,12 @@ class HotelState extends State<HotelDetailedPage> {
             ],
           ) ,
         )
-
       ],
     );
-
-//      StreamBuilder<QuerySnapshot>(
-//        stream: getHotels(),
-//        builder: (context, snapshot){
-//          if(!snapshot.hasData) return const Text('Loading');
-//          return
-//        }
-//    );
   }
 
   @override
   Widget build(BuildContext context) {
-
-
 
     return MaterialApp(
       title: 'Hotel Booking App',

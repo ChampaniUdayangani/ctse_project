@@ -2,10 +2,7 @@ import 'package:ctse_project/API/bookmarkedHotelAPI.dart';
 import 'package:ctse_project/model/bookMarkedHotel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ctse_project/API/hotelAPI.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ctse_project/model/hotel.dart';
 
 class BookmarkedHotelPage extends StatefulWidget{
   @override
@@ -15,7 +12,7 @@ class BookmarkedHotelPage extends StatefulWidget{
 
 class BookmarkedHotelState extends State<BookmarkedHotelPage> {
   
-
+  //generate bookmarked hotel list
   Widget buildHotelList(BuildContext context, List<DocumentSnapshot> snapshot){
     return ListView(
       shrinkWrap: true,
@@ -24,7 +21,7 @@ class BookmarkedHotelState extends State<BookmarkedHotelPage> {
     );
   }
 
-
+  //generate each bookmarked hotel list item
   Widget buildListItem(BuildContext context, DocumentSnapshot data){
     final hotel = BookmarkedHotel.fromSnapshot(data);
     return Padding(
@@ -96,17 +93,6 @@ class BookmarkedHotelState extends State<BookmarkedHotelPage> {
   }
 
 
-  Widget buildStarRatings(BuildContext context, int count){
-    final children = <Widget>[];
-    for (var i = 0; i < count; i++) {
-      children.add(new Icon(Icons.star, color: Colors.yellow));
-    }
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: children,
-    );
-  }
-  
 
   @override
   Widget build(BuildContext context) {
