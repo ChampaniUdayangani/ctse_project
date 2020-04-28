@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctse_project/model/hotel.dart';
 import 'package:ctse_project/UI/hotelDetails.dart';
 
+import 'package:ctse_project/UI/bookmarkedHotels.dart';
+
 class HotelListPage extends StatefulWidget{
   @override
   HotelListState createState() => HotelListState();
@@ -13,7 +15,6 @@ class HotelListPage extends StatefulWidget{
 
 //Referred https://flutter.dev/docs
 class HotelListState extends State<HotelListPage> {
-
   //generate the hotel list
   Widget buildHotelList(BuildContext context, List<DocumentSnapshot> snapshots){
       return ListView(
@@ -300,6 +301,7 @@ class HotelListState extends State<HotelListPage> {
       ),
     );
   }
+
 
 }
 
