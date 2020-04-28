@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ctse_project/UI/hotelList.dart';
 import 'package:ctse_project/UI/bookmarkedHotels.dart';
+import 'package:ctse_project/UI/userReviews.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   int _pageIndex = 0;
-  final List<Widget> _widgetList = [HotelListPage(), BookmarkedHotelPage()];
+  final List<Widget> _widgetList = [HotelListPage(), BookmarkedHotelPage(), UserReviewPage()];
 
   Widget build(BuildContext context) {
     return MaterialApp(
