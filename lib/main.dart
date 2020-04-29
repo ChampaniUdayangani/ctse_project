@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ctse_project/UI/hotelList.dart';
 
-import 'package:ctse_project/UI/homePage.dart';
+import 'package:ctse_project/UI/splashScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget{
         theme: ThemeData(
             primaryColor: Colors.indigo
         ),
-        home: HomePage()
+        home: SplashScreen()
     );
   }
 }
