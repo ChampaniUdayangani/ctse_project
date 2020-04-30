@@ -1,4 +1,4 @@
-//Coded with references from https://fluttermaster.com/create-splash-screen-in-flutter/
+//Coded by S.M.M.K. Subasinghe, IT17134736
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   Future<Timer> loadApp() async {
-    return new Timer(Duration(seconds: 3), onDoneLoading);
+    return new Timer(Duration(seconds: 2), onDoneLoading);
   }
 
   onDoneLoading() async {
