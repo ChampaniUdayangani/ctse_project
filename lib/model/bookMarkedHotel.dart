@@ -1,3 +1,10 @@
+/*
+IT16023574
+Udayangani Hamy W.C.
+*/
+
+// bookMarkedHotel.dart
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BookmarkedHotel{
@@ -23,6 +30,7 @@ class BookmarkedHotel{
   BookmarkedHotel.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);
 
+  //convert document data into JSON format
   toJson(){
         return {'name': name, 'price': price, 'location': location, 'bg_img': bgImg};
   }
