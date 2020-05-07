@@ -7,7 +7,7 @@ import 'package:ctse_project/API/reviewAPI.dart';
 import 'package:ctse_project/model/review.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'hotelList.dart';
 
@@ -311,26 +311,27 @@ class UserReviewState extends State<UserReviewPage> {
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Align(
                   alignment: Alignment.center,
-                  child: SmoothStarRating(
+                  child: RatingBar(
+                    initialRating: this._editedRating.toDouble(),
+                    minRating: 1,
+                    direction: Axis.horizontal,
                     allowHalfRating: false,
-                    onRatingChanged: (newRating) {
-                      setState(() {
-                        this._editedRating = newRating.toInt();
-                      });
+                    itemCount: 5,
+                    itemSize: 30,
+                    itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+                    itemBuilder: (context, _) => Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {
+                      this._editedRating = rating.toInt();
+                      print(this._editedRating);
                     },
-                    starCount: 5,
-                    rating: this._editedRating.toDouble(),
-                    color: Colors.amber,
-                    borderColor: Colors.amber,
-                    size: 30,
-                    filledIconData: Icons.star,
-                    halfFilledIconData: Icons.star_border,
-                    defaultIconData: Icons.star_border,
+                    unratedColor: Color(0x66949494),
                   ),
                 )
               )
           ),
-          Text(this._editedRating.toString())
         ],
       ),
     );

@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class AddReviewPage extends StatefulWidget {
   DocumentSnapshot _receivedDocument;
@@ -30,7 +31,25 @@ class AddReviewState extends State<AddReviewPage> {
   }
 
   Widget buildBody(BuildContext context) {
-    return Container();
+    var rating = 0.0;
+
+    return Container(
+      child: RatingBar(
+        initialRating: 3,
+        minRating: 1,
+        direction: Axis.horizontal,
+        allowHalfRating: false,
+        itemCount: 5,
+        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+        itemBuilder: (context, _) => Icon(
+          Icons.star,
+          color: Colors.amber,
+        ),
+        onRatingUpdate: (rating) {
+          print(rating);
+        },
+      )
+    );
   }
 
   Widget build(BuildContext context) {
