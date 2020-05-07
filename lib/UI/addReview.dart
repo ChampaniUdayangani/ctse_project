@@ -19,9 +19,18 @@ class AddReviewState extends State<AddReviewPage> {
   final String _username = "Kasun Seneviratne";
   String _hotelname;
 
+  final _reviewFormKey = GlobalKey<FormState>();
+  String review;
+  int stars;
+  Timestamp timestamp = Timestamp.now();
+
   //Overloaded constructor for state
   AddReviewState(DocumentSnapshot document) {
     this._hotelname = document["name"];
+  }
+
+  Widget buildBody(BuildContext context) {
+    return Container();
   }
 
   Widget build(BuildContext context) {
@@ -34,6 +43,7 @@ class AddReviewState extends State<AddReviewPage> {
         appBar: AppBar(
           title: Text("Write a review"),
         ),
+        body: buildBody(context)
       )
     );
   }

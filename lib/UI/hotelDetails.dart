@@ -487,7 +487,8 @@ class HotelState extends State<HotelDetailedPage> {
   Widget buildButton(BuildContext context, DocumentSnapshot document) {
     return Container(
       child: RaisedButton(
-        child: Text("See Reviews"),
+        child: Text("See Reviews", style: TextStyle(color: Colors.white)),
+        color: Colors.indigo,
         onPressed: () {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HotelReviewPage(document)));
         },

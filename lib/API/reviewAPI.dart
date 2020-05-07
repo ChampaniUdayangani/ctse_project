@@ -1,15 +1,25 @@
 //Coded by S.M.M.K. Subasinghe, IT17134736
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ctse_project/model/review.dart';
 
-getAllReviews(){
-  return Firestore.instance.collection("reviews").snapshots();
-}
+final CollectionReference _reviewCollectionReference = Firestore.instance.collection("reviews");
 
 getReviewsPerHotel(String hotelName) {
-  return Firestore.instance.collection("reviews").where('hotelName', isEqualTo: hotelName).snapshots();
+  return _reviewCollectionReference.where('hotelName', isEqualTo: hotelName).snapshots();
 }
 
 getReviewsPerUser(String username) {
-  return Firestore.instance.collection("reviews").where('username', isEqualTo: username).snapshots();
+  return _reviewCollectionReference.where('username', isEqualTo: username).snapshots();
+}
+
+addReview() {
+    Review review = Review(hotelName: "controller", );
+}
+
+deleteReview(Review review) {
+  Firestore.instance.runTransaction((Transaction transaction) async {
+      await transaction.delete(review.reference);
+    }
+  );
 }
