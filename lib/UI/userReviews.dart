@@ -241,7 +241,11 @@ class UserReviewState extends State<UserReviewPage> {
             FlatButton(
               child: Text("Submit"),
               onPressed: () {
-                Navigator.of(context).pop();
+                if(_editFormKey.currentState.validate()) {
+                  print("form is fine");
+                  updateReview(review, this._editedReview, this._editedRating);
+                  Navigator.of(context).pop();
+                }
               },
             ),
             FlatButton(
@@ -271,6 +275,7 @@ class UserReviewState extends State<UserReviewPage> {
               contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 5)
             ),
             validator: (newReviewText) {
+              print(newReviewText);
               setState(() {
                 this._editedReview = newReviewText;
               });

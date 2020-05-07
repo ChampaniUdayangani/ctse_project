@@ -23,3 +23,18 @@ deleteReview(Review review) {
     }
   );
 }
+
+updateReview(Review review, String newReview, int newRating) {
+  Timestamp lastEditedTime = Timestamp.now();
+  print(newReview);
+  print(newRating);
+  print(lastEditedTime);
+
+  try {
+    Firestore.instance.runTransaction((transaction) async {
+      await transaction.update(review.reference, {'review': newReview, 'rating': newRating, 'lastEdited': lastEditedTime});
+    });
+  } catch(error) {
+    print(error.toString());
+  }
+}
