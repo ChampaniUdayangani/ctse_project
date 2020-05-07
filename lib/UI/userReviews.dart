@@ -1,6 +1,6 @@
 //Coded by S.M.M.K. Subasinghe, IT17134736
 //Coded with references from https://api.flutter.dev/flutter/material/AlertDialog-class.html
-//Coded with references from https://pub.dev/packages/smooth_star_rating
+//Coded with references from https://pub.dev/packages/flutter_rating_bar
 //Coded with references from https://api.flutter.dev/flutter/widgets/Form-class.html
 
 import 'package:ctse_project/API/reviewAPI.dart';
@@ -242,7 +242,6 @@ class UserReviewState extends State<UserReviewPage> {
               child: Text("Submit"),
               onPressed: () {
                 if(_editFormKey.currentState.validate()) {
-                  print("form is fine");
                   updateReview(review, this._editedReview, this._editedRating);
                   Navigator.of(context).pop();
                 }
@@ -275,7 +274,6 @@ class UserReviewState extends State<UserReviewPage> {
               contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 5)
             ),
             validator: (newReviewText) {
-              print(newReviewText);
               setState(() {
                 this._editedReview = newReviewText;
               });
@@ -330,7 +328,6 @@ class UserReviewState extends State<UserReviewPage> {
                     ),
                     onRatingUpdate: (rating) {
                       this._editedRating = rating.toInt();
-                      print(this._editedRating);
                     },
                     unratedColor: Color(0x66949494),
                   ),
