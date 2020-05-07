@@ -1,9 +1,10 @@
 //Coded by S.M.M.K. Subasinghe, IT17134736
+//Coded with references from https://pusher.com/tutorials/flutter-building-layouts
+//Coded with references from https://medium.com/icnh/a-star-rating-widget-for-flutter-41560f82c8cb
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctse_project/API/reviewAPI.dart';
 import 'package:ctse_project/UI/addReview.dart';
-import 'package:ctse_project/UI/hotelDetails.dart';
 import 'package:ctse_project/UI/hotelList.dart';
 import 'package:ctse_project/model/review.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,55 +51,99 @@ class HotelReviewState extends State<HotelReviewPage> {
     );
   }
 
+  //Build the list view of reviews
   Widget buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
       children: snapshot.map((data) => buildListItem(context, data)).toList(),
     );
   }
 
+  //Build each item of the list of each review
   Widget buildListItem(BuildContext context, DocumentSnapshot data) {
     final review = Review.fromSnapshot(data);
     return Container(
       child: Card(
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Row(
+        child: Column(
           children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        review.date
-                      )
-                    )
-                  ],
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            review.date
+                          )
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: buildRating(context, review.stars),
-                    )
-                  ],
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: buildRating(context, review.stars),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            review.review
+                          )
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Align(
+                            alignment: Alignment.bottomRight,
+                            child: Text(
+                                review.username
+                            )
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
-        )
-      )
+        ),
+      ),
     );
   }
 
+  //Build the star rating view with the rating given by the user
   Widget buildRating(BuildContext context, int rating) {
     return Row(
       mainAxisSize: MainAxisSize.min,

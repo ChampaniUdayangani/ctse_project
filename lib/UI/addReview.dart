@@ -1,3 +1,5 @@
+//Coded by S.M.M.K. Subasinghe, IT17134736
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +16,7 @@ class AddReviewPage extends StatefulWidget {
 }
 
 class AddReviewState extends State<AddReviewPage> {
-  final String _username = "Amal Peiris";
+  final String _username = "Kasun Seneviratne";
   String _hotelname;
 
   //Overloaded constructor for state

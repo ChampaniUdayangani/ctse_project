@@ -1,4 +1,5 @@
 //Coded by S.M.M.K. Subasinghe, IT17134736
+//Coded with references from https://fluttermaster.com/create-splash-screen-in-flutter/
 
 import 'dart:async';
 import 'package:flutter/material.dart';

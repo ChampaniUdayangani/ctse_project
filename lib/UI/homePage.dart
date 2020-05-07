@@ -1,4 +1,5 @@
 //Coded by S.M.M.K. Subasinghe, IT17134736
+//Coded with references from https://willowtreeapps.com/ideas/how-to-use-flutter-to-build-an-app-with-bottom-navigation
 
 import 'package:flutter/material.dart';
 
