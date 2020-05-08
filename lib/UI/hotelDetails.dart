@@ -1,3 +1,10 @@
+/*
+IT16023574
+Udayangani Hamy W.C.
+*/
+
+// hotelDetails.dart
+
 import 'dart:async';
 
 import 'package:ctse_project/UI/bookmarkedHotels.dart';
@@ -63,10 +70,9 @@ class HotelState extends State<HotelDetailedPage> {
           ),
           items: document["img"].map<Widget>((item) => Container(
             child: Stack(
-
                 children: [
                   Image(
-                    height: 200,
+                    height: 300,
                     width: MediaQuery.of(context).size.width,
                     image: AssetImage(item),
                     fit: BoxFit.fill,
@@ -97,7 +103,7 @@ class HotelState extends State<HotelDetailedPage> {
                     child: Text(
                       hotel.name,
                       style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 35.0,
                       color: Colors.white,
                     ),
                     ),
@@ -510,7 +516,6 @@ class HotelState extends State<HotelDetailedPage> {
               buildPriceSection(context, hotel),
               buildStarRatings(context, hotel),
               descriptionSection(context, hotel),
-
               googleMapSection(context, hotel),
               facilitiesSection(context, hotel),
               statsSection(context, hotel),
@@ -522,6 +527,8 @@ class HotelState extends State<HotelDetailedPage> {
     );
   }
 
+
+  //override build method
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

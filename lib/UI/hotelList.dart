@@ -1,3 +1,10 @@
+/*
+IT16023574
+Udayangani Hamy W.C.
+*/
+
+// hotelList.dart
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ctse_project/API/hotelAPI.dart';
@@ -285,7 +292,7 @@ class HotelListState extends State<HotelListPage> {
     );
   }
 
-
+  //override build method
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

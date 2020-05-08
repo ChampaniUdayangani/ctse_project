@@ -1,3 +1,10 @@
+/*
+IT16023574
+Udayangani Hamy W.C.
+*/
+
+// hotel.dart
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Hotel{

@@ -1,6 +1,12 @@
+/*
+IT16023574
+Udayangani Hamy W.C.
+*/
+
+// circularProgress.dart
+
 import 'package:flutter/material.dart';
 import 'dart:math';
-
 
 // Code is referred from https://mightytechno.com/flutter-percent-indicator/ and adopted to match requirement of this project
 class CircularProgress extends CustomPainter{
@@ -37,9 +43,9 @@ class CircularProgress extends CustomPainter{
     canvas.drawArc(Rect.fromCircle(center: center,radius: radius), -pi/2, angle, false, completeArc);
   }
 
+  // override shouldRepaint method of CustomPainter class
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }

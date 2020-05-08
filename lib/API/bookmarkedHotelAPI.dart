@@ -1,3 +1,10 @@
+/*
+IT16023574
+Udayangani Hamy W.C.
+*/
+
+// bookmarkedHotelAPI.dart
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctse_project/model/bookMarkedHotel.dart';
 
