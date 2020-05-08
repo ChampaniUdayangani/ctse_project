@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 class HotelReviewPage extends StatefulWidget {
   DocumentSnapshot _receivedDocument;
 
-  //Overloaded constructor for the widget
+  //Overloaded constructor for the widget (stores the document of a selected hotel review set)
   HotelReviewPage(DocumentSnapshot document) {
     this._receivedDocument = document;
   }
@@ -26,13 +26,13 @@ class HotelReviewState extends State<HotelReviewPage> {
   DocumentSnapshot _document;
   String _hotelname;
 
-  //Overloaded constructor for the state
+  //Overloaded constructor for the state (extract the hotel name from the document)
   HotelReviewState(DocumentSnapshot document) {
     this._document = document;
     this._hotelname = document["name"];
   }
 
-  //Get reviews from the db and generate list of reviews
+  //Get reviews for the selected hotel from the database and generate list of reviews
   Widget buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: getReviewsPerHotel(_hotelname),
@@ -58,7 +58,7 @@ class HotelReviewState extends State<HotelReviewPage> {
     );
   }
 
-  //Build each item of the list of each review
+  //Build each item of the list for each review
   Widget buildListItem(BuildContext context, DocumentSnapshot data) {
     final review = Review.fromSnapshot(data);
     return Container(
@@ -157,6 +157,7 @@ class HotelReviewState extends State<HotelReviewPage> {
     );
   }
 
+  //Build the hotel review page
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hotel Booking App',

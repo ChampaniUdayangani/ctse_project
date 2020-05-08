@@ -18,6 +18,7 @@ class SplashScreenState extends State<SplashScreen> {
     loadApp();
   }
 
+  //Build the splash screen using the provided asset
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -29,10 +30,12 @@ class SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  //Set timer for the splash screen
   Future<Timer> loadApp() async {
     return new Timer(Duration(seconds: 2), onDoneLoading);
   }
 
+  //Set navigation for the next page once the splash screen is finished loading
   onDoneLoading() async {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
   }

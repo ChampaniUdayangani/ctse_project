@@ -12,7 +12,7 @@ import 'package:ctse_project/model/review.dart';
 class AddReviewPage extends StatefulWidget {
   DocumentSnapshot _receivedDocument;
 
-  //Overloaded constructor for widget
+  //Overloaded constructor for widget (stores the document of a selected hotel review set)
   AddReviewPage(DocumentSnapshot document) {
     this._receivedDocument = document;
   }
@@ -30,11 +30,12 @@ class AddReviewState extends State<AddReviewPage> {
   int _rating = 1;
   Timestamp _timestamp = Timestamp.now();
 
-  //Overloaded constructor for state
+  //Overloaded constructor for page state, retrieves the hotelName from the review document of the selected hotel
   AddReviewState(DocumentSnapshot document) {
     this._hotelname = document["name"];
   }
 
+  //Builds the main body of the page (contains the form to add new reviews)
   Widget buildBody(BuildContext context) {
     return Container(
       child: SingleChildScrollView(
@@ -167,6 +168,7 @@ class AddReviewState extends State<AddReviewPage> {
     );
   }
 
+  //Creates new review object with the user inputs, and store in the database
   createNewReview() {
     Review review = Review(
         hotelName: this._hotelname,
@@ -179,6 +181,7 @@ class AddReviewState extends State<AddReviewPage> {
     addReview(review);
   }
 
+  //Build the Add review page of the application
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hotel Booking App',

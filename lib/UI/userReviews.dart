@@ -223,6 +223,7 @@ class UserReviewState extends State<UserReviewPage> {
     );
   }
 
+  //Build the floating window which displays the edit form
   Future<void> buildEditFormWindow(Review review) async {
     return showDialog<void>(
       context: context,
@@ -259,6 +260,7 @@ class UserReviewState extends State<UserReviewPage> {
     );
   }
 
+  //Build the edit review form
   Widget buildForm(BuildContext context, Review review) {
     return Form(
       key: _editFormKey,
@@ -339,6 +341,7 @@ class UserReviewState extends State<UserReviewPage> {
     );
   }
 
+  //Build the user review page
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hotel Booking App',
