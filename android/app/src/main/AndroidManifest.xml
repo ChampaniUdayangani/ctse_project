@@ -14,7 +14,7 @@
 
 
         android:name="io.flutter.app.FlutterApplication"
-        android:label="B-Y-H"
+        android:label="Roadside"
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true"
         >
