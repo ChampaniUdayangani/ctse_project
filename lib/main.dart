@@ -1,13 +1,10 @@
-/*
-IT16023574
-Udayangani Hamy W.C.
-*/
-
 // main.dart
 import 'package:flutter/material.dart';
-import 'package:ctse_project/UI/hotelList.dart';
+
 
 //call the stateless widget
+import 'package:ctse_project/UI/splashScreen.dart';
+
 void main() => runApp(MyApp());
 
 //create the main view with Hotel List page
@@ -18,7 +15,7 @@ class MyApp extends StatelessWidget{
         theme: ThemeData(
             primaryColor: Colors.indigo
         ),
-        home: HotelListPage()
+        home: SplashScreen()
     );
   }
 }

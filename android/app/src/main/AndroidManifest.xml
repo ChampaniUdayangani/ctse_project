@@ -14,8 +14,8 @@
 
 
         android:name="io.flutter.app.FlutterApplication"
-        android:label="ctse_project"
-        android:icon="@mipmap/ic_launcher"
+        android:label="Roadside"
+        android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true"
         >
         <meta-data

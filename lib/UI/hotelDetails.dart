@@ -8,6 +8,8 @@ Udayangani Hamy W.C.
 import 'dart:async';
 
 import 'package:ctse_project/UI/bookmarkedHotels.dart';
+import 'package:ctse_project/UI/hotelList.dart';
+import 'package:ctse_project/UI/hotelReviews.dart';
 import 'package:ctse_project/model/bookMarkedHotel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -486,6 +488,19 @@ class HotelState extends State<HotelDetailedPage> {
     );
   }
 
+  //Coded by S.M.M.K. Subasinghe, IT17134736
+  //Create the button to view reviews for a hotel
+  Widget buildButton(BuildContext context, DocumentSnapshot document) {
+    return Container(
+      child: RaisedButton(
+        child: Text("See Reviews", style: TextStyle(color: Colors.white)),
+        color: Colors.indigo,
+        onPressed: () {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HotelReviewPage(document)));
+        },
+      ),
+    );
+  }
 
   //generate main content of the UI
   Widget buildBody(BuildContext context){
@@ -504,6 +519,7 @@ class HotelState extends State<HotelDetailedPage> {
               googleMapSection(context, hotel),
               facilitiesSection(context, hotel),
               statsSection(context, hotel),
+              buildButton(context, hotel)
             ],
           ) ,
         )
@@ -515,7 +531,6 @@ class HotelState extends State<HotelDetailedPage> {
   //override build method
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'Hotel Booking App',
       theme: ThemeData(
@@ -524,6 +539,12 @@ class HotelState extends State<HotelDetailedPage> {
       home: Scaffold(
           appBar: AppBar(
             title: Text('Hotel Details'),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder : (context) => HotelListPage()));
+              },
+            ),
             actions: <Widget>[
               IconButton(
                   icon: Icon(Icons.save),
@@ -536,7 +557,7 @@ class HotelState extends State<HotelDetailedPage> {
                   )
             ],
           ),
-          body: buildBody(context)
+          body: buildBody(context),
       ),
     );
   }
