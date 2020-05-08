@@ -7,7 +7,7 @@ final CollectionReference _reviewCollectionReference = Firestore.instance.collec
 
 //Get hotel reviews for each hotel in descending order
 getReviewsPerHotel(String hotelName) {
-  return _reviewCollectionReference.where('hotelName', isEqualTo: hotelName).orderBy("date", descending: true).snapshots();
+  return _reviewCollectionReference.where('hotelName', isEqualTo: hotelName).snapshots();
 }
 
 //Get hotel reviews added by the user (Kasun Seneviratne)
