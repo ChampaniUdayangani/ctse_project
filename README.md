@@ -2,7 +2,7 @@
 
 This mobile application is developed for hotel booking and further user is able to view detailed view of hotels, give reviews on hotels and book hotels.
 
-### Hotels View
+##### Hotels View
 
 ![Screenshot_20200427-235613](https://user-images.githubusercontent.com/51434067/101044761-ba83ae00-35a5-11eb-95f9-af3620972d75.jpg)
 
