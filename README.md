@@ -11,7 +11,7 @@ This mobile application is developed for hotel booking and further user is able 
 
 <img src="https://user-images.githubusercontent.com/51434067/101044911-e6069880-35a5-11eb-9f35-3a2befdaaf5e.jpg" alt="alt text" width="250" height="500">
 
-### Bookmarked View
+### Bookmarked Hotels View
 
 <img src="https://user-images.githubusercontent.com/51434067/101045096-09c9de80-35a6-11eb-8a04-a32081f1096e.jpg" alt="alt text" width="250" height="500">
 
