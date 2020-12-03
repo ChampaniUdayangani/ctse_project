@@ -1,6 +1,6 @@
 # ctse_project
 
-A new Flutter application.
+This mobile application is developed for hotel booking and further user is able to view detailed view of hotels, give reviews on hotels and book hotels.
 
 ## Getting Started
 
